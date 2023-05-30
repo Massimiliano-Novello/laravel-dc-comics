@@ -8,5 +8,7 @@
             <img src="{{ $comics['immagine'] }}" alt="">
             <p>{{ $comics['descrizione'] }}</p>
         </div>
+
+        <a class="btn btn-primary" href="{{ route('comics.index') }}">Torna indietro</a>
     </div>
 @endsection

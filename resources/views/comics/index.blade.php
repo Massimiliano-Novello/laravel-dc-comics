@@ -3,8 +3,10 @@
 
 @section('content')
     <div class="container">
-      <h1>I nostri fumetti</h1>
-      <a href="{{route('comics.create')}}">Aggiungi fumetti</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>I nostri fumetti</h1>
+            <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi fumetti</a>
+        </div>
         <table class="table table-success table-striped">
             <thead>
                 <tr>
@@ -30,6 +32,14 @@
                             <a class="btn btn-success" href="{{ route('comics.show', $comic->id) }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
+                            <a class="btn btn-warning" href="{{ route('comics.edit', $comic->id) }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form class="d-inline-block" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
