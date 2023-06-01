@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComicsController extends Controller
 {
@@ -34,17 +37,18 @@ class ComicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $comics = new Comic();
-        $comics->titolo = $data['name'];
-        $comics->immagine = $data['image'];
-        $comics->descrizione = $data['description'];
-        $comics->prezzo = $data['price'];
-        $comics->serie = $data['series'];
-        $comics->uscita = $data['uscita'];
-        $comics->tipo = $data['type'];
+        $comics->fill($data);
+        // $comics->titolo = $data['name'];
+        // $comics->immagine = $data['image'];
+        // $comics->descrizione = $data['description'];
+        // $comics->prezzo = $data['price'];
+        // $comics->serie = $data['series'];
+        // $comics->uscita = $data['uscita'];
+        // $comics->tipo = $data['type'];
         $comics->save();
 
         return redirect()->route('comics.index');
@@ -81,12 +85,12 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $comics = Comic::findOrFail($id);
         $comics->update($data);
-        return redirect()->route('comics.show', $comics->id);
+        return redirect()->route('comics.index', $comics->id);
     }
 
     /**

@@ -10,13 +10,14 @@
         <table class="table table-success table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">#</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Prezzo</th>
                     <th scope="col">Serie</th>
                     <th scope="col">Uscita</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Visualizza</th>
+                    <th scope="col">Azioni</th>
+
                 </tr>
             </thead>
             <tbody>
